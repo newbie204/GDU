@@ -1,5 +1,6 @@
 package client;
 
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
 import java.io.*;
@@ -103,27 +104,49 @@ public class ThreadNhapXuat extends Thread {
     }
 
     public void gui() {
-        String thongDiep = view.getTextFieldSoanThao().getText();
-        String diaChiDich = view.getComboBoxChonNguoiNhan().getValue();
+        try {
+            String thongDiep = view.getTextFieldSoanThao().getText();
+            String diaChiDich = view.getComboBoxChonNguoiNhan().getValue();
 
-        if (thongDiep.isBlank() || diaChiDich == null) {
-            thongBao("Bạn chưa nhập thông điệp hoặc chưa chọn người nhận");
-            return;
+            if (thongDiep == null || thongDiep.isBlank()) {
+                thongBao("Bạn chưa nhập thông điệp");
+                return;
+            }
+
+            if (diaChiDich == null) {
+                thongBao("Bạn chưa chọn người nhận");
+                return;
+            }
+
+            String message;
+            if ("Mọi người".equals(diaChiDich)) {
+                message = "guiMoiNguoi#~" + model.getUserID() + "#~" + model.getUsername() + ": " + thongDiep;
+                Platform.runLater(() -> view.addMessage("Bạn (gửi mọi người): " + thongDiep));
+            } else {
+                if (diaChiDich.contains(" ")) {
+                    String[] diaChiDichSplit = diaChiDich.split(" ");
+                    if (diaChiDichSplit.length > 1) {
+                        message = "guiMotNguoi#~" + model.getUserID() + "#~" + thongDiep + "#~" + diaChiDichSplit[1];
+                        Platform.runLater(() -> view.addMessage("Bạn (gửi " + diaChiDichSplit[0] + "): " + thongDiep));
+                    } else {
+                        thongBao("Định dạng người nhận không hợp lệ");
+                        return;
+                    }
+                } else {
+                    thongBao("Định dạng người nhận không hợp lệ");
+                    return;
+                }
+            }
+
+            xuat(message);
+            Platform.runLater(() -> view.getTextFieldSoanThao().clear());
+        } catch (Exception e) {
+            System.out.println("Lỗi khi gửi tin nhắn: " + e.getMessage());
+            e.printStackTrace();
+            thongBao("Có lỗi xảy ra khi gửi tin nhắn");
         }
-
-        String message;
-        if ("Mọi người".equals(diaChiDich)) {
-            message = "guiMoiNguoi#~" + model.getUserID() + "#~" + model.getUsername() + ": " + thongDiep;
-            view.addMessage("Bạn (gửi mọi người): " + thongDiep);
-        } else {
-            String[] diaChiDichSplit = diaChiDich.split(" ");
-            message = "guiMotNguoi#~" + model.getUserID() + "#~" + thongDiep + "#~" + diaChiDichSplit[1];
-            view.addMessage("Bạn (gửi " + diaChiDichSplit[0] + "): " + thongDiep);
-        }
-
-        xuat(message);
-        view.getTextFieldSoanThao().clear();
     }
+
     
     public void setUserInfo(int userID, String username) {
         this.model.setUserID(userID);

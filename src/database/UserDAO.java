@@ -120,13 +120,5 @@ public class UserDAO {
         }
     }
     
-    public void resetAllUserLoginStatus() {
-        String sql = "UPDATE users SET is_logged_in = false";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    
 }

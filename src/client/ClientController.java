@@ -37,9 +37,23 @@ public class ClientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        model = new ClientModel();
-        view = new ClientView(labelBan, textAreaTrucTuyen, textAreaNoiDung, textFieldSoanThao, comboBoxChonNguoiNhan);
-        ketNoiMayChu();
+    	 try {
+    	        model = new ClientModel();
+    	        view = new ClientView(labelBan, textAreaTrucTuyen, textAreaNoiDung, textFieldSoanThao, comboBoxChonNguoiNhan);
+    	        
+    	        
+    	        comboBoxChonNguoiNhan.setOnAction(event -> {
+    	            String selected = comboBoxChonNguoiNhan.getValue();
+    	            if (selected == null) {
+    	                comboBoxChonNguoiNhan.setValue("Mọi người");
+    	            }
+    	        });
+    	        
+    	        ketNoiMayChu();
+    	    } catch (Exception e) {
+    	        System.out.println("Lỗi khởi tạo: " + e.getMessage());
+    	        e.printStackTrace();
+    	    }
     }
 
     public void ketNoiMayChu() {
@@ -63,6 +77,7 @@ public class ClientController implements Initializable {
     public void initUser(User user) {
         model.setUserID(user.getId());
         model.setUsername(user.getUsername());
+        view.setCurrentUsername(user.getUsername());
         labelBan.setText(user.getUsername());
         // Gửi thông tin user ID từ database lên server
         if (threadNhapXuat != null) {

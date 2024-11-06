@@ -68,12 +68,7 @@ public class ThreadNhapXuat extends Thread {
     
     
     
-    private String fetchUsernameFromDatabase(int userID) {
-        // Sử dụng UserDAO để lấy username từ database
-        UserDAO userDAO = new UserDAO();
-        User user = userDAO.getUserById(userID);
-        return user != null ? user.getUsername() : "User" + userID;
-    }
+
     
 
     private String nhap() throws IOException {
