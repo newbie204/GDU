@@ -34,9 +34,7 @@ public class RegisterController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            
-            // Thiết lập và hiển thị form đăng nhập
-            currentStage.setTitle("Đăng nhập");
+            currentStage.setTitle("Mini Zalo");
             currentStage.setScene(scene);
             currentStage.setResizable(false);
             currentStage.show();
@@ -47,14 +45,19 @@ public class RegisterController {
 
     @FXML
     public void handleRegister(ActionEvent event) {
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
+        String username = txtUsername.getText().trim();
+        String password = txtPassword.getText().trim();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            thongBao("Tên đăng ký và mật khẩu không được để trống");
+            return;
+        }
+
         if (userDAO.registerUser(username, password)) {
-            System.out.println("Đăng ký thành công!");
-            thongBao("Đăng ký thành công!");
+            thongBao("Đăng ký thành công");
             closeRegister(event);
         } else {
-            thongBao("Tài khoản đã tồn tại");
+            thongBao("Đăng ký thất bại. Tên đăng nhập đã tồn tại.");
         }
     }
 
@@ -65,10 +68,10 @@ public class RegisterController {
         
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-            Parent giaoDien = loader.load();
-            Scene canhVat = new Scene(giaoDien);
-            stage.setTitle("Đăng nhập");
-            stage.setScene(canhVat);
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setTitle("Mini Zalo");
+            stage.setScene(scene);
             stage.show();
             stage.setResizable(false);
         } catch (Exception e) {

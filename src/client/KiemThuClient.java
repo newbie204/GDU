@@ -8,15 +8,15 @@ import javafx.stage.Stage;
 
 public class KiemThuClient extends Application {
     @Override
-    public void start(Stage sanKhau) {
+    public void start(Stage stage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-            Parent giaoDien = loader.load();
-            Scene canhVat = new Scene(giaoDien);
-            sanKhau.setTitle("Đăng nhập");
-            sanKhau.setScene(canhVat);
-            sanKhau.show();
-            sanKhau.setResizable(false);
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setTitle("Mini Zalo");
+            stage.setScene(scene);
+            stage.show();
+            stage.setResizable(false);
         } catch (Exception e) {
             e.printStackTrace();
         }

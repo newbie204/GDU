@@ -42,27 +42,30 @@ public class UserDAO {
 	    }
 
 	 public User loginUser(String username, String password) {
-		    String sql = "SELECT id, username, password FROM users WHERE username = ? AND password = ?";
+		    String sql = "SELECT id, username, password, is_logged_in FROM users WHERE username = ? AND password = ?";
 		    try (Connection conn = DatabaseConnection.getConnection();
 		         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-		        
+
 		        pstmt.setString(1, username);
 		        pstmt.setString(2, password);
-		        
+
 		        ResultSet rs = pstmt.executeQuery();
 		        if (rs.next()) {
-		            return new User(
-		                rs.getInt("id"),
-		                rs.getString("username"),
-		                rs.getString("password")
-		            );
+		            int id = rs.getInt("id");
+		            boolean isLoggedIn = rs.getBoolean("is_logged_in");
+		            if (isLoggedIn) {
+		                return null; // Người dùng đã đăng nhập ở nơi khác
+		            }
+		            User user = new User(id, rs.getString("username"), rs.getString("password"));
+		            setUserLoggedIn(id, true);
+		            return user;
 		        }
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    }
 		    return null;
 		}
-    
+	 
     public User getUserById(int id) {
         String sql = "SELECT * FROM users WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
