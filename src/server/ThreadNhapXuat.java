@@ -45,6 +45,14 @@ public class ThreadNhapXuat extends Thread {
             String message;
             while ((message = nhap()) != null) {
                 String[] parts = message.split("#~");
+                
+                if (parts[0].equals("logout")) {
+                    
+                    UserDAO userDAO = new UserDAO();
+                    userDAO.updateLoggedOut(Integer.parseInt(parts[1]));
+                    break;
+                }
+                
                 if (parts[0].equals("setUserInfo")) {
                     // Set user info khi client gửi lên
                     this.userID = Integer.parseInt(parts[1]);
@@ -81,6 +89,10 @@ public class ThreadNhapXuat extends Thread {
 
     private void closeResources() {
         try {
+            // Cập nhật trạng thái logged_in thông qua DAO
+            
+
+            // Đóng các resources
             if (bufferedReader != null) bufferedReader.close();
             if (bufferedWriter != null) bufferedWriter.close();
             if (socket != null && !socket.isClosed()) socket.close();

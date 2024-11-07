@@ -138,6 +138,21 @@ public class ThreadNhapXuat extends Thread {
     }
 
     
+    public void closeConnection() {
+        try {
+            // Gửi thông điệp đóng kết nối
+            xuat("logout#~" + model.getUserID() + "#~" + model.getUsername());
+            
+            // Đóng các tài nguyên
+            if (bufferedReader != null) bufferedReader.close();
+            if (bufferedWriter != null) bufferedWriter.close();
+            if (socket != null && !socket.isClosed()) socket.close();
+            
+        } catch (IOException e) {
+            System.out.println("Lỗi khi đóng kết nối: " + e.getMessage());
+        }
+    }
+    
     public void setUserInfo(int userID, String username) {
         this.model.setUserID(userID);
         this.model.setUsername(username);

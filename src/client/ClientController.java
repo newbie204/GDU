@@ -2,16 +2,17 @@ package client;
 
 
 import java.net.URL;
-
 import java.util.ResourceBundle;
+
 import database.User;
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class ClientController implements Initializable {
     @FXML
@@ -50,6 +51,16 @@ public class ClientController implements Initializable {
     	        });
     	        
     	        ketNoiMayChu();
+    	        
+    	        Platform.runLater(() -> {
+    	            Stage stage = (Stage) labelBan.getScene().getWindow();
+    	            stage.setOnCloseRequest(event -> {
+    	                closeConnection();
+    	                Platform.exit();
+    	                System.exit(0);
+    	            });
+    	        });
+    	        
     	    } catch (Exception e) {
     	        System.out.println("Lỗi khởi tạo: " + e.getMessage());
     	        e.printStackTrace();
@@ -62,6 +73,12 @@ public class ClientController implements Initializable {
             threadNhapXuat.start();
         } catch (Exception e) {
             System.out.println("Không thể kết nối đến server: " + e.getMessage());
+        }
+    }
+    
+    public void closeConnection() {
+        if (threadNhapXuat != null) {
+            threadNhapXuat.closeConnection();
         }
     }
 

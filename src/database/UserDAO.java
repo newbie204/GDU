@@ -123,5 +123,15 @@ public class UserDAO {
         }
     }
     
+    public void updateLoggedOut(int userID) {
+        String sql = "UPDATE users SET is_logged_in = false WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Lỗi khi cập nhật trạng thái logged_in: " + e.getMessage());
+        }
+    }
     
 }
