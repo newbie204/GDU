@@ -5,7 +5,6 @@ import java.sql.*;
 
 public class UserDAO {
 	public boolean registerUser(String username, String password) {
-        // Kiểm tra xem username đã tồn tại chưa
         if (isUsernameExists(username)) {
             return false; 
         }
@@ -54,7 +53,7 @@ public class UserDAO {
 		            int id = rs.getInt("id");
 		            boolean isLoggedIn = rs.getBoolean("is_logged_in");
 		            if (isLoggedIn) {
-		                return null; // Người dùng đã đăng nhập ở nơi khác
+		                return null; 
 		            }
 		            User user = new User(id, rs.getString("username"), rs.getString("password"));
 		            setUserLoggedIn(id, true);

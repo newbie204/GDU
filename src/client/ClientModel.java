@@ -19,8 +19,6 @@ public class ClientModel {
         this.messages = new ArrayList<>();
         this.userDAO = new UserDAO();
     }
-
-    // Getters and setters
     
     public String getUsername() {
 		return username;

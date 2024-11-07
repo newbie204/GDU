@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import database.User;
 import database.UserDAO;
 
 public class ThreadNhapXuat extends Thread {
@@ -21,8 +20,6 @@ public class ThreadNhapXuat extends Thread {
         this.socket = socket;
     }
     
-    
-
     public int getUserID() {
 		return userID;
 	}
@@ -85,13 +82,9 @@ public class ThreadNhapXuat extends Thread {
         bufferedWriter.flush();
     }
     
-    
 
     private void closeResources() {
         try {
-            // Cập nhật trạng thái logged_in thông qua DAO
-            
-
             // Đóng các resources
             if (bufferedReader != null) bufferedReader.close();
             if (bufferedWriter != null) bufferedWriter.close();

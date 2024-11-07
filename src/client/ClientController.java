@@ -66,6 +66,15 @@ public class ClientController implements Initializable {
     	        e.printStackTrace();
     	    }
     }
+    
+    @FXML
+    public void hanhDongGui() {
+        if (threadNhapXuat != null) {
+            threadNhapXuat.gui();
+        } else {
+            System.out.println("Chưa kết nối đến server.");
+        }
+    }
 
     public void ketNoiMayChu() {
         try {
@@ -82,15 +91,6 @@ public class ClientController implements Initializable {
         }
     }
 
-    @FXML
-    public void hanhDongGui() {
-        if (threadNhapXuat != null) {
-            threadNhapXuat.gui();
-        } else {
-            System.out.println("Chưa kết nối đến server.");
-        }
-    }
-    
     public void initUser(User user) {
         model.setUserID(user.getId());
         model.setUsername(user.getUsername());

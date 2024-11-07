@@ -87,22 +87,7 @@ public class ThreadNhapXuat extends Thread {
             }
         }
     }
-
-    public void capNhatDSOnline(String danhSachOnline) {
-        String[] tachDanhSachOnline = danhSachOnline.split("-");
-        List<String> dsOnline = new ArrayList<>();
-
-        for (String i : tachDanhSachOnline) {
-            String[] parts = i.split(":");
-            if (parts.length == 2) {
-                dsOnline.add(parts[1]); 
-            }
-        }
-
-        model.setOnlineUsers(dsOnline);
-        view.updateOnlineUsers(dsOnline);
-    }
-
+    
     public void gui() {
         try {
             String thongDiep = view.getTextFieldSoanThao().getText();
@@ -136,7 +121,31 @@ public class ThreadNhapXuat extends Thread {
             thongBao("Có lỗi xảy ra khi gửi tin nhắn");
         }
     }
+    
+    public void xuat(String thongDiep) {
+        try {
+            bufferedWriter.write(thongDiep);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        } catch (IOException e) {
+            System.out.println("Lỗi khi gửi dữ liệu: " + e.getMessage());
+        }
+    }
 
+    public void capNhatDSOnline(String danhSachOnline) {
+        String[] tachDanhSachOnline = danhSachOnline.split("-");
+        List<String> dsOnline = new ArrayList<>();
+
+        for (String i : tachDanhSachOnline) {
+            String[] parts = i.split(":");
+            if (parts.length == 2) {
+                dsOnline.add(parts[1]); 
+            }
+        }
+
+        model.setOnlineUsers(dsOnline);
+        view.updateOnlineUsers(dsOnline);
+    }
     
     public void closeConnection() {
         try {
@@ -160,16 +169,6 @@ public class ThreadNhapXuat extends Thread {
         xuat("setUserInfo#~" + userID + "#~" + username);
     }
     
-    public void xuat(String thongDiep) {
-        try {
-            bufferedWriter.write(thongDiep);
-            bufferedWriter.newLine();
-            bufferedWriter.flush();
-        } catch (IOException e) {
-            System.out.println("Lỗi khi gửi dữ liệu: " + e.getMessage());
-        }
-    }
-
     public void thongBao(String tb) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");

@@ -24,15 +24,27 @@ public class ClientView {
         this.textAreaNoiDung = textAreaNoiDung;
         this.textFieldSoanThao = textFieldSoanThao;
         this.comboBoxChonNguoiNhan = comboBoxChonNguoiNhan;
-        
-        // Thêm "Mọi người" làm lựa chọn mặc định
         this.comboBoxChonNguoiNhan.getItems().add("Mọi người");
     }
+    
+    public TextField getTextFieldSoanThao() {
+        return textFieldSoanThao;
+    }
 
-    public void updateUserID(int userID) {
-        Platform.runLater(() -> {
-            labelBan.setText("Xin chào: " + String.valueOf(userID));
-        });
+    public ComboBox<String> getComboBoxChonNguoiNhan() {
+        return comboBoxChonNguoiNhan;
+    }
+
+    public TextArea getTextAreaNoiDung() {
+        return textAreaNoiDung;
+    }
+
+    public Label getLabelBan() {
+        return labelBan;
+    }
+
+    public TextArea getTextAreaTrucTuyen() {
+        return textAreaTrucTuyen;
     }
     
     public void setCurrentUsername(String username) {
@@ -69,6 +81,12 @@ public class ClientView {
             }
         });
     }
+    
+    public void updateUserID(int userID) {
+        Platform.runLater(() -> {
+            labelBan.setText("Xin chào: " + String.valueOf(userID));
+        });
+    }
 
     public void addMessage(String message) {
         Platform.runLater(() -> {
@@ -76,23 +94,5 @@ public class ClientView {
         });
     }
 
-    public TextField getTextFieldSoanThao() {
-        return textFieldSoanThao;
-    }
-
-    public ComboBox<String> getComboBoxChonNguoiNhan() {
-        return comboBoxChonNguoiNhan;
-    }
-
-    public TextArea getTextAreaNoiDung() {
-        return textAreaNoiDung;
-    }
-
-    public Label getLabelBan() {
-        return labelBan;
-    }
-
-    public TextArea getTextAreaTrucTuyen() {
-        return textAreaTrucTuyen;
-    }
+    
 }
