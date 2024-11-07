@@ -106,7 +106,7 @@ public class ThreadNhapXuat extends Thread {
     public void gui() {
         try {
             String thongDiep = view.getTextFieldSoanThao().getText();
-            String diaChiDich = view.getComboBoxChonNguoiNhan().getValue();
+            String diaChiDich = view.getComboBoxChonNguoiNhan().getValue(); // Đây là username
 
             if (thongDiep == null || thongDiep.isBlank()) {
                 thongBao("Bạn chưa nhập thông điệp");
@@ -123,19 +123,9 @@ public class ThreadNhapXuat extends Thread {
                 message = "guiMoiNguoi#~" + model.getUserID() + "#~" + model.getUsername() + ": " + thongDiep;
                 Platform.runLater(() -> view.addMessage("Bạn (gửi mọi người): " + thongDiep));
             } else {
-                if (diaChiDich.contains(" ")) {
-                    String[] diaChiDichSplit = diaChiDich.split(" ");
-                    if (diaChiDichSplit.length > 1) {
-                        message = "guiMotNguoi#~" + model.getUserID() + "#~" + thongDiep + "#~" + diaChiDichSplit[1];
-                        Platform.runLater(() -> view.addMessage("Bạn (gửi " + diaChiDichSplit[0] + "): " + thongDiep));
-                    } else {
-                        thongBao("Định dạng người nhận không hợp lệ");
-                        return;
-                    }
-                } else {
-                    thongBao("Định dạng người nhận không hợp lệ");
-                    return;
-                }
+                // Gửi trực tiếp với username
+                message = "guiMotNguoi#~" + model.getUserID() + "#~" + thongDiep + "#~" + diaChiDich;
+                Platform.runLater(() -> view.addMessage("Bạn (gửi " + diaChiDich + "): " + thongDiep));
             }
 
             xuat(message);

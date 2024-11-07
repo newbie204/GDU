@@ -66,7 +66,7 @@ public class ClientController implements Initializable {
     }
 
     @FXML
-    public void hanhDongGui(ActionEvent event) {
+    public void hanhDongGui() {
         if (threadNhapXuat != null) {
             threadNhapXuat.gui();
         } else {

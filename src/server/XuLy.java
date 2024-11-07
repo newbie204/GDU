@@ -21,7 +21,7 @@ public class XuLy {
 
     public synchronized void loaiRa(int userID) {
         dsTheadNhapXuat.removeIf(threadNhapXuat -> threadNhapXuat.getUserID() == userID);
-        guiDanhSachUserDangOnline(); // Cập nhật danh sách online cho các client còn lại
+        guiDanhSachUserDangOnline(); 
     }
 
     public void guiUserIDChoClient(int userID) {
@@ -60,23 +60,29 @@ public class XuLy {
         String loaiThongDiep = parts[0];
 
         if ("guiMotNguoi".equals(loaiThongDiep)) {
-            int nhanToUserID = Integer.parseInt(parts[3]);
-            guiMotNguoi(thongDiep, nhanToUserID);
+            String usernameNguoiNhan = parts[3];
+            guiMotNguoi(thongDiep, usernameNguoiNhan);
         } else if ("guiMoiNguoi".equals(loaiThongDiep)) {
             guiMoiNguoi(thongDiep);
         }
     }
 
-    private void guiMotNguoi(String thongDiep, int userID) {
+    private void guiMotNguoi(String thongDiep, String usernameNguoiNhan) {
         String[] parts = thongDiep.split("#~");
         int guiTuUserID = Integer.parseInt(parts[1]);
         String noiDung = parts[2];
-        
+
         for (ThreadNhapXuat threadNhapXuat : dsTheadNhapXuat) {
-            if (threadNhapXuat.getUserID() == userID) {
+            if (threadNhapXuat.getUsername().equals(usernameNguoiNhan)) {
                 try {
-                    String guiTuUsername = threadNhapXuat.getUsername();
-                    String thongDiepMoi = "guiMotNguoi#~" + guiTuUserID + "#~" + guiTuUsername + ": " + noiDung;
+                    String guiTuUsername = "";
+                    for (ThreadNhapXuat t : dsTheadNhapXuat) {
+                        if (t.getUserID() == guiTuUserID) {
+                            guiTuUsername = t.getUsername();
+                            break;
+                        }
+                    }
+                    String thongDiepMoi = "guiMotNguoi#~" + guiTuUsername + "#~" + noiDung;
                     threadNhapXuat.xuat(thongDiepMoi);
                 } catch (IOException e) {
                     e.printStackTrace();

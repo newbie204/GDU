@@ -24,7 +24,6 @@ public class Server {
                 System.out.println("Server đang chờ kết nối từ client...");
                 Socket incomingSocket = serverSocket.accept();
                 System.out.println("Client đã kết nối: " + incomingSocket.getRemoteSocketAddress());
-                // Không cần userID++ nữa vì sẽ lấy từ database
                 ThreadNhapXuat threadNhapXuat = new ThreadNhapXuat(incomingSocket);
                 threadNhapXuat.start();
                 xuLy.themVao(threadNhapXuat);

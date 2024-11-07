@@ -67,10 +67,6 @@ public class ThreadNhapXuat extends Thread {
     }
     
     
-    
-
-    
-
     private String nhap() throws IOException {
         return bufferedReader.readLine();
     }

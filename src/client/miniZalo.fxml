@@ -13,8 +13,8 @@
       <ComboBox fx:id="comboBoxChonNguoiNhan" layoutY="294.0" prefWidth="150.0" />
       <TextField fx:id="textFieldSoanThao" layoutX="151.0" layoutY="295.0" prefHeight="26.0" prefWidth="418.0" />
       <Button layoutX="569.0" layoutY="293.0" mnemonicParsing="false" onAction="#hanhDongGui" prefHeight="26.0" prefWidth="34.0" text="&gt;" />
-      <TextArea fx:id="textAreaTrucTuyen" layoutY="33.0" prefHeight="262.0" prefWidth="150.0" />
-      <TextArea fx:id="textAreaNoiDung" layoutX="151.0" layoutY="33.0" prefHeight="262.0" prefWidth="452.0" />
+      <TextArea fx:id="textAreaTrucTuyen" editable="false" layoutY="33.0" prefHeight="262.0" prefWidth="150.0" />
+      <TextArea fx:id="textAreaNoiDung" editable="false" layoutX="151.0" layoutY="33.0" prefHeight="262.0" prefWidth="452.0" />
       <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trực tuyến" />
       <Text layoutX="151.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đang trò chuyện" />
       <Label fx:id="labelBan" layoutX="477.0" layoutY="14.0" text="bạn" />
