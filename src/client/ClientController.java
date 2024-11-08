@@ -78,7 +78,7 @@ public class ClientController implements Initializable {
 
     public void ketNoiMayChu() {
         try {
-            threadNhapXuat = new ThreadNhapXuat("localhost", 3333, model, view);
+            threadNhapXuat = new ThreadNhapXuat("192.168.1.29", 3333, model, view);
             threadNhapXuat.start();
         } catch (Exception e) {
             System.out.println("Không thể kết nối đến server: " + e.getMessage());

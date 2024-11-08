@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import database.User;
 import database.UserDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,9 +22,15 @@ public class LoginController {
     private UserDAO userDAO = new UserDAO();
 
     @FXML
-    public void handleLogin(ActionEvent event) {
+    public void handleLogin() {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
+        
+        if (username.isEmpty() || password.isEmpty()) {
+            thongBao("Tên đăng nhập và mật khẩu không được để trống");
+            return;
+        }
+        
         User user = userDAO.loginUser(username, password);
 
         if (user != null) {
@@ -62,7 +67,7 @@ public class LoginController {
     }
 
     @FXML
-    public void openRegister(ActionEvent event) {
+    public void openRegister() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
             Parent root = loader.load();

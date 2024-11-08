@@ -3,7 +3,6 @@ package client;
 import java.io.IOException;
 
 import database.UserDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,7 +24,7 @@ public class RegisterController {
     private UserDAO userDAO = new UserDAO();
 
     @FXML
-    public void handleBack(ActionEvent event) {
+    public void handleBack( ) {
         try {
             // Đóng form hiện tại
             Stage currentStage = (Stage) btnBack.getScene().getWindow();
@@ -44,7 +43,7 @@ public class RegisterController {
     }
 
     @FXML
-    public void handleRegister(ActionEvent event) {
+    public void handleRegister() {
         String username = txtUsername.getText().trim();
         String password = txtPassword.getText().trim();
 
@@ -55,29 +54,12 @@ public class RegisterController {
 
         if (userDAO.registerUser(username, password)) {
             thongBao("Đăng ký thành công");
-            closeRegister(event);
+            handleBack();
         } else {
             thongBao("Đăng ký thất bại. Tên đăng nhập đã tồn tại.");
         }
     }
 
-    @FXML
-    public void closeRegister(ActionEvent event) {
-        Stage stage = (Stage) txtUsername.getScene().getWindow();
-        stage.close(); 
-        
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setTitle("Mini Zalo");
-            stage.setScene(scene);
-            stage.show();
-            stage.setResizable(false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     
     public void thongBao(String tb) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

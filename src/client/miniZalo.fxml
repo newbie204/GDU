@@ -8,15 +8,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="607.0" style="         -fx-background-color: #f0f2f5;     " xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientController">
    <children>
-      <ComboBox fx:id="comboBoxChonNguoiNhan" layoutY="294.0" prefWidth="150.0" />
-      <TextField fx:id="textFieldSoanThao" layoutX="151.0" layoutY="295.0" prefHeight="26.0" prefWidth="418.0" />
-      <Button layoutX="569.0" layoutY="293.0" mnemonicParsing="false" onAction="#hanhDongGui" prefHeight="26.0" prefWidth="34.0" text="&gt;" />
-      <TextArea fx:id="textAreaTrucTuyen" editable="false" layoutY="33.0" prefHeight="262.0" prefWidth="150.0" />
-      <TextArea fx:id="textAreaNoiDung" editable="false" layoutX="151.0" layoutY="33.0" prefHeight="262.0" prefWidth="452.0" />
-      <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trực tuyến" />
-      <Text layoutX="151.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đang trò chuyện" />
-      <Label fx:id="labelBan" layoutX="477.0" layoutY="14.0" text="bạn" />
-   </children>
+      <ComboBox fx:id="comboBoxChonNguoiNhan" layoutY="346.0" prefWidth="150.0" style="-fx-background-color:white;-fx-border-color:#e0e0e0;-fx-border-radius:5px;-fx-background-radius:5px;" />
+      <TextField fx:id="textFieldSoanThao" layoutX="150.0" layoutY="345.0" prefHeight="26.0" prefWidth="418.0" style="-fx-background-color:#f8f9fa;-fx-border-color:#e0e0e0;-fx-border-radius:5px;-fx-background-radius:5px;-fx-padding:5px;" />
+      <Button layoutX="568.0" layoutY="345.0" mnemonicParsing="false" onAction="#hanhDongGui" prefHeight="26.0" prefWidth="40.0" style="-fx-background-color:#3498db;-fx-text-fill:white;-fx-background-radius:5px;-fx-font-weight:bold;" text="&gt;" />
+      <TextArea fx:id="textAreaTrucTuyen" editable="false" layoutY="83.0" prefHeight="262.0" prefWidth="150.0" style="-fx-background-color:white;-fx-border-color:#e0e0e0;-fx-border-radius:5px;-fx-background-radius:5px;" />
+      <TextArea fx:id="textAreaNoiDung" editable="false" layoutX="151.0" layoutY="83.0" prefHeight="262.0" prefWidth="452.0" style="-fx-background-color:white;-fx-border-color:#e0e0e0;-fx-border-radius:5px;-fx-background-radius:5px;" />
+      <Text layoutX="14.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size:12px;-fx-fill:#7f8c8d;" text="Trực tuyến" />
+      <Text layoutX="168.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size:12px;-fx-fill:#7f8c8d;" text="Đang trò chuyện" />
+      <Label fx:id="labelBan" layoutX="474.0" layoutY="55.0" style="-fx-font-size:14px;-fx-text-fill:#2c3e50;-fx-font-weight:bold;" text="bạn" />
+</children>
+
 </AnchorPane>
