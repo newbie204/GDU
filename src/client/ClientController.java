@@ -34,12 +34,6 @@ public class ClientController implements Initializable {
     private ClientView view;
     private ThreadNhapXuat threadNhapXuat;
     
-    
-    public ClientController(ClientModel model, ClientView view) {
-		this.model = new ClientModel();
-		this.view = new ClientView(labelBan, textAreaTrucTuyen, textAreaNoiDung, textFieldSoanThao, comboBoxChonNguoiNhan);
-	}
-    
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -65,7 +65,6 @@ public class ThreadNhapXuat extends Thread {
                     case "userID" -> {
                         int userID = Integer.parseInt(phanTachThongDiep[2]);
                         model.setUserID(userID);
-                        view.updateUserID(userID);
                     }
                     case "capNhatDSOnline" -> capNhatDSOnline(phanTachThongDiep[2]);
                     case "capNhatDangNhapDangXuat", "guiMoiNguoi" -> {
@@ -91,7 +90,7 @@ public class ThreadNhapXuat extends Thread {
     public void gui() {
         try {
             String thongDiep = view.getTextFieldSoanThao().getText();
-            String diaChiDich = view.getComboBoxChonNguoiNhan().getValue(); // Đây là username
+            String diaChiDich = view.getComboBoxChonNguoiNhan().getValue(); 
 
             if (thongDiep == null || thongDiep.isBlank()) {
                 thongBao("Bạn chưa nhập thông điệp");

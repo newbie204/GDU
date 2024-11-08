@@ -82,11 +82,6 @@ public class ClientView {
         });
     }
     
-    public void updateUserID(int userID) {
-        Platform.runLater(() -> {
-            labelBan.setText(String.valueOf(userID));
-        });
-    }
 
     public void addMessage(String message) {
         Platform.runLater(() -> {

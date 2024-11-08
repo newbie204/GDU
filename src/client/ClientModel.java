@@ -3,7 +3,6 @@ package client;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.UserDAO;
 
 public class ClientModel {
     private int userID;
