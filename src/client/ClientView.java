@@ -84,7 +84,7 @@ public class ClientView {
     
     public void updateUserID(int userID) {
         Platform.runLater(() -> {
-            labelBan.setText("Xin chào: " + String.valueOf(userID));
+            labelBan.setText(String.valueOf(userID));
         });
     }
 

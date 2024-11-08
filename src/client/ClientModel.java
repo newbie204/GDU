@@ -8,7 +8,6 @@ import database.UserDAO;
 public class ClientModel {
     private int userID;
     private String username;
-    private UserDAO userDAO;
     
 
 	private List<String> onlineUsers;
@@ -17,7 +16,6 @@ public class ClientModel {
     public ClientModel() {
         this.onlineUsers = new ArrayList<>();
         this.messages = new ArrayList<>();
-        this.userDAO = new UserDAO();
     }
     
     public String getUsername() {
