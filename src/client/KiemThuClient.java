@@ -15,8 +15,9 @@ public class KiemThuClient extends Application {
             Scene scene = new Scene(root);
             stage.setTitle("Mini Zalo");
             stage.setScene(scene);
-            stage.show();
             stage.setResizable(false);
+            stage.show();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

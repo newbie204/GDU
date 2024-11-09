@@ -47,6 +47,7 @@ public class LoginController {
                 Stage stage = new Stage();
                 stage.setTitle("Mini Zalo - " + user.getUsername());
                 stage.setScene(new Scene(root));
+                stage.setResizable(false);
                 stage.show();
 
                 // Đóng cửa sổ đăng nhập
@@ -74,6 +75,7 @@ public class LoginController {
             Stage stage = new Stage();
             stage.setTitle("Mini Zalo");
             stage.setScene(new Scene(root));
+            stage.setResizable(false);
             stage.show();
             ((Stage) txtUsername.getScene().getWindow()).close(); 
         } catch (IOException e) {

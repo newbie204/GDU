@@ -51,7 +51,7 @@ public class ThreadNhapXuat extends Thread {
                 }
                 
                 if (parts[0].equals("setUserInfo")) {
-                    // Set user info khi client gửi lên
+                    
                     this.userID = Integer.parseInt(parts[1]);
                     this.username = parts[2];
                     Server.xuLy.guiDanhSachUserDangOnline();
